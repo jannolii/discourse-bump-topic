@@ -1,0 +1,4 @@
+en:
+  site_settings:
+    bump_topic_enabled: "Enable bumping of topics"
+    bump_topic_interval_hours: "Bumping interval allowed (hours)"

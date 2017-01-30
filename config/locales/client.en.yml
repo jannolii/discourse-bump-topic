@@ -1,0 +1,4 @@
+en:
+  js:
+    bump_topic:
+      enable_bump_topic: "Enable topic bumping"

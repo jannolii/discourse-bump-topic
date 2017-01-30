@@ -1,0 +1,7 @@
+plugins:
+  bump_topic_enabled:
+    default: false
+    client: true
+  bump_topic_interval_hours:
+    default: 72
+    client: true

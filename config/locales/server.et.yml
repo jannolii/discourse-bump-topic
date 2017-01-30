@@ -1,0 +1,4 @@
+et:
+  site_settings:
+    bump_topic_enabled: "Teemade tõstmine on lubatud"
+    bump_topic_interval_hours: "Lubatud teema tõstmise aeg (tundides)"
