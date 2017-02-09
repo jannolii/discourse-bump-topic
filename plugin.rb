@@ -14,6 +14,9 @@ after_initialize do
       object.topic.category.custom_fields['enable_bump_topics']
     }
 
+    add_to_serializer(:topic_view, :bumped_at) { object.topic.bumped_at }
+    add_to_serializer(:basic_topic, :bumped_at) { object.bumped_at }
+
     # I guess this should be the default @ discourse. PR maybe?
     add_to_serializer(:topic_view, :custom_fields, false) {
       if object.topic.custom_fields == nil then
@@ -24,4 +27,8 @@ after_initialize do
     }
   end
 
+  PostRevisor.track_topic_field(:bumped_at) do |tc, bumped_at|
+    tc.record_change('bumped_at', tc.topic.bumped_at, bumped_at)
+    tc.topic.bumped_at = bumped_at
+  end
 end

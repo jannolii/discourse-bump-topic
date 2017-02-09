@@ -12,10 +12,7 @@ function initializeWithApi(api) {
     canBumpTopic: function() {
       const enable_bump_topics = this.category_bump_topic_enabled;
       const currentDate = new Date();
-      console.log(currentDate);
-      console.log(this.get('bumpedAt'));
       const dateDiffInHours = (currentDate - this.get('bumpedAt')) / (1000 * 3600);
-      console.log(currentDate - this.get('bumpedAt'));
       return !this.isPrivatemessage
         && currentUser.id === this.user_id
         && this.siteSettings.bump_topic_enabled
