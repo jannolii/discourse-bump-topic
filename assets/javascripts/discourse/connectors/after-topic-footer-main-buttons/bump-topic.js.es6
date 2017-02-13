@@ -1,11 +1,12 @@
 import { popupAjaxError } from 'discourse/lib/ajax-error';
+import Topic from 'discourse/models/topic';
 
 export default {
   actions: {
     clickButton(topic) {
       topic.set('bumped_at', new Date());
       const props = topic.getProperties('bumped_at');
-      topic.update(props);
+      Topic.update(topic, props);
     }
   }
 };
