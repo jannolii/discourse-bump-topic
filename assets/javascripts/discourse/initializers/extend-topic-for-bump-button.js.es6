@@ -11,7 +11,13 @@ function initializeWithApi(api) {
     canBumpTopic: function(bumped_at) {
       const enable_bump_topics = this.category_bump_topic_enabled;
       const currentDate = new Date();
-      const dateDiffInHours = (currentDate - this.get('bumped_at_with_button')) / (1000 * 3600);
+      var dateDiffInHours = 0;
+      if (this.get('bumped_at_with_button')) {
+        var maxDate = Math.max(new Date(this.get('bumped_at_with_button')).getTime(), new Date(this.get('bumped_at')).getTime());
+        dateDiffInHours = (currentDate - maxDate) / (1000 * 3600);
+      } else {
+        dateDiffInHours = (currentDate - new Date(this.get('bumped_at')).getTime()) / (1000 * 3600);
+      }
       return !this.isPrivatemessage
         && currentUser.id === this.user_id
         && this.siteSettings.bump_topic_enabled
