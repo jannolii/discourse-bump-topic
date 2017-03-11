@@ -3,3 +3,4 @@ en:
     bump_topic:
       enable_bump_topic: "Enable topic bumping"
       bump_topic: "Bump Topic"
+      last_bumped: "Last bumped"

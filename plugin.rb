@@ -10,25 +10,31 @@ after_initialize do
   #Category.register_custom_field_type('enable_bump_topics', :boolean)
 
   if SiteSetting.bump_topic_enabled then
+
     add_to_serializer(:topic_view, :category_bump_topic_enabled, false) {
       object.topic.category.custom_fields['enable_bump_topics']
     }
 
-    add_to_serializer(:topic_view, :bumped_at) { object.topic.bumped_at }
-    add_to_serializer(:basic_topic, :bumped_at) { object.bumped_at }
-
-    # I guess this should be the default @ discourse. PR maybe?
-    add_to_serializer(:topic_view, :custom_fields, false) {
-      if object.topic.custom_fields == nil then
-        {}
-      else
-        object.topic.custom_fields
-      end
+    add_to_serializer(:topic_view, :bumped_at, false) {
+      object.topic.bumped_at
     }
-  end
 
-  PostRevisor.track_topic_field(:bumped_at) do |tc, bumped_at|
-    tc.record_change('bumped_at', tc.topic.bumped_at, bumped_at)
-    tc.topic.bumped_at = bumped_at
+    add_to_serializer(:topic_view, :created_at, false) {
+      object.topic.created_at
+    }
+
+    add_to_serializer(:topic_view, :custom_fields, false) {
+      object.topic.custom_fields
+    }
+
+    PostRevisor.track_topic_field(:bumped_at) do |tc, bumped_at|
+      tc.record_change('bumped_at', tc.topic.bumped_at, bumped_at)
+      tc.topic.bumped_at = bumped_at
+    end
+
+    PostRevisor.track_topic_field(:custom_fields) do |tc, custom_fields|
+      tc.record_change('custom_fields', tc.topic.custom_fields, custom_fields)
+      tc.topic.custom_fields = custom_fields
+    end
   end
 end

@@ -3,3 +3,4 @@ et:
     bump_topic:
       enable_bump_topic: "Luba teema tõstmine"
       bump_topic: "Tõsta teemat"
+      last_bumped: "Viimati tõstetud"
