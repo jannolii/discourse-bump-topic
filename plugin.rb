@@ -12,7 +12,7 @@ after_initialize do
   if SiteSetting.bump_topic_enabled then
 
     add_to_serializer(:topic_view, :category_bump_topic_enabled, false) {
-      object.topic.category.custom_fields['enable_bump_topics']
+      object.topic.category.custom_fields['enable_bump_topics'] if object.topic.category
     }
 
     add_to_serializer(:topic_view, :bumped_at, false) {
