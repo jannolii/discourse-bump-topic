@@ -4,3 +4,4 @@ en:
       enable_bump_topic: "Enable topic bumping"
       bump_topic: "Bump Topic"
       last_bumped: "Last bumped"
+      error_while_bumping: "Error when bumping topic"

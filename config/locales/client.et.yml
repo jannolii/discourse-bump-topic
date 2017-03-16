@@ -4,3 +4,4 @@ et:
       enable_bump_topic: "Luba teema tõstmine"
       bump_topic: "Tõsta teemat"
       last_bumped: "Viimati tõstetud"
+      error_while_bumping: "Teema tõstmise käigus tekkis viga"

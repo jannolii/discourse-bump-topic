@@ -7,7 +7,7 @@ function initializeWithApi(api) {
   const currentUser = api.getCurrentUser();
 
   Topic.reopen({
-    @computed('bumped_at','created_at')
+    @computed('bumped_at','updated_at')
     canBumpTopic: function(bumped_at) {
       const enable_bump_topics = this.category_bump_topic_enabled;
       const currentDate = new Date();
