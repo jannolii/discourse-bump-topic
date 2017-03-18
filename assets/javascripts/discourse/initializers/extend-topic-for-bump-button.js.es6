@@ -7,8 +7,8 @@ function initializeWithApi(api) {
   const currentUser = api.getCurrentUser();
 
   Topic.reopen({
-    @computed('bumped_at','updated_at')
-    canBumpTopic: function(bumped_at) {
+    @computed('bumped_at', 'updated_at', 'archived', 'closed')
+    canBumpTopic: function() {
       const enable_bump_topics = this.category_bump_topic_enabled;
       const currentDate = new Date();
       var dateDiffInHours = 0;
@@ -22,6 +22,8 @@ function initializeWithApi(api) {
         && currentUser.id === this.user_id
         && this.siteSettings.bump_topic_enabled
         && enable_bump_topics
+        && !this.get('closed')
+        && !this.get('archived')
         && dateDiffInHours > this.siteSettings.bump_topic_interval_hours;
     }
   });
