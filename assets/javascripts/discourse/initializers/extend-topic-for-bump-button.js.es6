@@ -20,7 +20,7 @@ function initializeWithApi(api) {
       }
       console.log(enable_bump_topics);
       return !this.isPrivatemessage
-        && currentUser.id === this.user_id
+        && currentUser && currentUser.id === this.user_id
         && this.siteSettings.bump_topic_enabled
         && enable_bump_topics
         && !this.get('archived')
