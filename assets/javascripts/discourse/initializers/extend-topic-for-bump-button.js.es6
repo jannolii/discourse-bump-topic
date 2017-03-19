@@ -18,11 +18,11 @@ function initializeWithApi(api) {
       } else {
         dateDiffInHours = (currentDate - new Date(this.get('bumped_at')).getTime()) / (1000 * 3600);
       }
+      console.log(enable_bump_topics);
       return !this.isPrivatemessage
         && currentUser.id === this.user_id
         && this.siteSettings.bump_topic_enabled
         && enable_bump_topics
-        && !this.get('closed')
         && !this.get('archived')
         && dateDiffInHours > this.siteSettings.bump_topic_interval_hours;
     }
